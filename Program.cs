@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using SupermarketWEB.Data;
+using SupermarkerWEB.Data;
 
 namespace SupermarketWEB
 {
@@ -13,12 +12,20 @@ namespace SupermarketWEB
             // Add services to the container.
             builder.Services.AddRazorPages();
 
-            builder.Services.AddDbContext<SupermarketContext>(Options =>
-          Options.UseSqlServer(builder.Configuration.GetConnectionString("SupermarketDB"))
-          );
+
+
+            //Agregando el contexto Supermarketcontext a la aplicacion
+            builder.Services.AddDbContext<SupermarketContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("SupermarketDB"))
+            );
+
+            builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
+            {
+                options.Cookie.Name = "MyCookieAuth";
+                options.LoginPath = "/Account/Login";
+            });
 
             var app = builder.Build();
-
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
