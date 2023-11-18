@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.EntityFrameworkCore;
+using SupermarkerWEB.Models;
 using SupermarketWEB.Models;
 
-namespace SupermarketWEB.Data
+namespace SupermarkerWEB.Data
 {
     public class SupermarketContext : DbContext
     {
@@ -12,5 +13,8 @@ namespace SupermarketWEB.Data
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<PayMode> PayMode { get; set; }
+        public DbSet<Provider> Provider { get; set; }
+
     }
 }
